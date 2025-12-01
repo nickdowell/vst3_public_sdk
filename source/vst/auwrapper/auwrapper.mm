@@ -2480,13 +2480,7 @@ tresult PLUGIN_API AUWrapper::restartComponent (int32 flags)
 
 	if (flags & kLatencyChanged)
 	{
-		AudioUnitEvent auEvent;
-		auEvent.mArgument.mProperty.mAudioUnit = GetComponentInstance ();
-		auEvent.mArgument.mProperty.mPropertyID = kAudioUnitProperty_Latency;
-		auEvent.mArgument.mProperty.mScope = kAudioUnitScope_Global;
-		auEvent.mArgument.mProperty.mElement = 0;
-		auEvent.mEventType = kAudioUnitEvent_PropertyChange;
-		AUEventListenerNotify (paramListenerRef, NULL, &auEvent);
+		PropertyChanged (kAudioUnitProperty_Latency, kAudioUnitScope_Global, 0);
 		result = kResultTrue;
 	}
 	// TODO: finish restartComponent implementation
